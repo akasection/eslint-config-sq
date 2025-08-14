@@ -11,6 +11,7 @@ import unicorn from 'eslint-plugin-unicorn'
 import globals from 'globals'
 import tseslint, { type ConfigArray } from 'typescript-eslint'
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
 export default <ConfigArray>tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.recommended,

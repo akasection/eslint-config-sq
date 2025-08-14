@@ -1,7 +1,7 @@
 import {
   defineConfigWithVueTs,
 } from '@vue/eslint-config-typescript'
-import vue3Cfg from './vue3'
+import vue3Cfg from './vue'
 
 export default defineConfigWithVueTs(
   vue3Cfg,

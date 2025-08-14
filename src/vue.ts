@@ -122,7 +122,7 @@ export default defineConfigWithVueTs(
       /*
        * Define SFC block order.
        */
-      'vue/component-tags-order': [
+      'vue/block-order': [
         'error',
         {
           order: ['template', 'script', 'style'],
