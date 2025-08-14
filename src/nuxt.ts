@@ -1,8 +1,10 @@
 import {
   defineConfigWithVueTs,
 } from '@vue/eslint-config-typescript'
+import vue3Cfg from './vue3'
 
 export default defineConfigWithVueTs(
+  vue3Cfg,
   {
     files: ['app/layouts/**', 'app/pages/**', 'app/components/**', 'app.vue', 'error.vue'],
     rules: { 'vue/multi-word-component-names': 'off' },
@@ -28,4 +30,4 @@ export default defineConfigWithVueTs(
       ],
     },
   },
-);
+)

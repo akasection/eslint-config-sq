@@ -1,11 +1,15 @@
-import eslint from '@eslint/js';
-import tseslint, { type ConfigArray } from 'typescript-eslint';
-import unicorn from 'eslint-plugin-unicorn';
-import importPlugin from 'eslint-plugin-import';
-import promisePlugin from 'eslint-plugin-promise';
-import globals from 'globals';
+import eslint from '@eslint/js'
+import stylistic from '@stylistic/eslint-plugin'
 
-import type { TSESLint } from '@typescript-eslint/utils';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { TSESLint } from '@typescript-eslint/utils'
+
+import importPlugin from 'eslint-plugin-import'
+import imhelpPlugin from 'eslint-plugin-import-helpers'
+import promisePlugin from 'eslint-plugin-promise'
+import unicorn from 'eslint-plugin-unicorn'
+import globals from 'globals'
+import tseslint, { type ConfigArray } from 'typescript-eslint'
 
 export default <ConfigArray>tseslint.config(
   eslint.configs.recommended,
@@ -29,11 +33,21 @@ export default <ConfigArray>tseslint.config(
         },
       },
     },
+    plugins: {
+      '@stylistic': stylistic,
+      'import-helpers': imhelpPlugin,
+    },
     languageOptions: {
+      parserOptions: {
+        projectService: {
+          allowDefaultProject: ['*.ts', '*.mjs', '*.mts', '*.cts', '*.js', '*.jsx', '*.tsx', '*.cjs'],
+        },
+        tsconfigRootDir: import.meta.dirname,
+      },
       globals: {
         ...globals.browser,
         ...globals.es2021,
-        ...globals.node
+        ...globals.node,
       },
     },
     rules: {
@@ -184,7 +198,7 @@ export default <ConfigArray>tseslint.config(
      *
      * interface Foo { name: string; greet(): string } <- allowed.
      */
-    '@typescript-eslint/member-delimiter-style': [
+    '@stylistic/member-delimiter-style': [
       'warn',
       {
         multiline: {
@@ -201,7 +215,7 @@ export default <ConfigArray>tseslint.config(
      * const a = 'a'; <- error. remove semi-colon.
      */
     semi: 'off',
-    '@typescript-eslint/semi': ['error', 'never'],
+    '@stylistic/semi': ['error', 'never'],
 
     /*
      * const foo = {
@@ -210,7 +224,7 @@ export default <ConfigArray>tseslint.config(
      * }
      */
     'comma-dangle': 'off',
-    '@typescript-eslint/comma-dangle': [
+    '@stylistic/comma-dangle': [
       'error',
       {
         arrays: 'always-multiline',
@@ -225,7 +239,7 @@ export default <ConfigArray>tseslint.config(
      * const arr = [1 , 2] <- error. delete the space before comma.
      */
     'comma-spacing': 'off',
-    '@typescript-eslint/comma-spacing': 'error',
+    '@stylistic/comma-spacing': 'error',
 
     /*
      * Enforce Case Convention for Variables, parameters, types/interfaces, and methods/properties
@@ -263,13 +277,13 @@ export default <ConfigArray>tseslint.config(
      * const obj = {key: 'name'} <- error. add spaces after opening and closing brackets.
      */
     'object-curly-spacing': 'off',
-    '@typescript-eslint/object-curly-spacing': ['error', 'always'],
+    '@stylistic/object-curly-spacing': ['error', 'always'],
 
     /*
      * const a = "a" <- error. use single quote.
      */
     quotes: 'off',
-    '@typescript-eslint/quotes': ['error', 'single', { allowTemplateLiterals: true }],
+    '@stylistic/quotes': ['error', 'single', { allowTemplateLiterals: 'always' }],
 
     /*
      * function fn () { } <- error. remove the space before parens.
@@ -277,7 +291,7 @@ export default <ConfigArray>tseslint.config(
      * async() => { } <- error. add space before parens.
      */
     'space-before-function-paren': 'off',
-    '@typescript-eslint/space-before-function-paren': [
+    '@stylistic/space-before-function-paren': [
       'error',
       {
         anonymous: 'always',
@@ -307,14 +321,14 @@ export default <ConfigArray>tseslint.config(
      * () <- error. remove newline.
      */
     'func-call-spacing': 'off',
-    '@typescript-eslint/func-call-spacing': ['error', 'never'],
+    '@stylistic/function-call-spacing': ['error', 'never'],
 
     /*
      * a+b <- error. add space between operator.
      * a?b:c <- error. add space between operator.
      */
     'space-infix-ops': 'off',
-    '@typescript-eslint/space-infix-ops': ['error', { int32Hint: false }],
+    '@stylistic/space-infix-ops': ['error', { int32Hint: false }],
 
     /**
      * We want to have import type { } become common as nuxt already requires that practice.
@@ -473,7 +487,7 @@ export default <ConfigArray>tseslint.config(
      * const regex = /(a+){2}y/ <- warned. unsafe.
      * const regex = /(.*){1,32000}[bc]/ <- warned. unsafe.
      */
-    'unicorn/no-unsafe-regex': 'warn',
+    'unicorn/better-regex': 'warn',
 
     /*
      * string.replace(/This has no special regex symbols/g, '') <- error. use .replaceAll.
@@ -533,7 +547,7 @@ export default <ConfigArray>tseslint.config(
     'unicorn/filename-case': [
       'error',
       {
-        ignore: ['\\.test\\.ts$', '\\.md$'],
+        ignore: [String.raw`\.test\.ts$`, String.raw`\.md$`],
         cases: {
           kebabCase: true,
           pascalCase: true,
@@ -548,6 +562,6 @@ export default <ConfigArray>tseslint.config(
      * we already have JIRA for that
      */
     'unicorn/expiring-todo-comments': 'warn',
-    }
+    },
   }
-);
+)

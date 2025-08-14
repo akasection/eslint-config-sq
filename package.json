@@ -2,7 +2,7 @@
   "name": "@akasection/eslint-config-sq",
   "version": "1.0.0",
   "description": "Cherry-picked ESLint config for akaSECTION",
-  "main": "dist/vanilla.js",
+  "main": "dist/vanilla.mjs",
   "scripts": {
     "build": "unbuild"
   },
@@ -26,9 +26,12 @@
   "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748",
   "dependencies": {
     "@eslint/js": "^9.33.0",
+    "@stylistic/eslint-plugin": "^5.2.3",
     "@typescript-eslint/utils": "^8.39.1",
     "@vue/eslint-config-typescript": "^14.6.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-import-helpers": "^2.0.1",
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-unicorn": "^60.0.0",
     "eslint-plugin-vue": "^10.4.0",

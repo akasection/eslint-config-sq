@@ -6,8 +6,8 @@ export default defineBuildConfig({
   entries: [
     {
       builder: 'mkdist',
-      ext: 'js',
-      format: 'cjs',
+      ext: 'mjs',
+      format: 'mjs',
       input: './src',
       outDir: './dist',
     },

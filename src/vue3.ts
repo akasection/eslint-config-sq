@@ -1,10 +1,10 @@
-import vuefig from 'eslint-plugin-vue';
 import {
   defineConfigWithVueTs,
   vueTsConfigs,
-} from '@vue/eslint-config-typescript';
-import vanillaCfg from './vanilla';
-import globals from 'globals';
+} from '@vue/eslint-config-typescript'
+import vuefig from 'eslint-plugin-vue'
+import globals from 'globals'
+import vanillaCfg from './vanilla'
 
 export default defineConfigWithVueTs(
   vanillaCfg,
@@ -22,7 +22,7 @@ export default defineConfigWithVueTs(
         },
       },
       globals: {
-        ...globals['shared-node-browser']
+        ...globals['shared-node-browser'],
       },
     },
     settings: {
@@ -177,4 +177,4 @@ export default defineConfigWithVueTs(
       'vue/no-v-html': 'warn',
     },
   }
-);
+)
